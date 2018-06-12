@@ -25,7 +25,7 @@ namespace DMNS.DataLayer
             }
         }
         
-        public Project insertProject(string projectName,int userID)
+        public Project insertProject(string projectName,int userID, string description)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -33,7 +33,8 @@ namespace DMNS.DataLayer
                 {
                     name = projectName,
                     userId = userID,
-                    createdAt = DateTime.Now
+                    createdAt = DateTime.Now,
+                    destription = description
                 };
 
                 db.projectTable.Add(project);
@@ -43,7 +44,7 @@ namespace DMNS.DataLayer
             }
         }
         
-        public Meeting insertMeeting(int projectID,string meetingName, string notes, string decisions)
+        public Meeting insertMeeting(int projectID,string meetingName, string notes, string decisions, string imagePath)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -53,10 +54,41 @@ namespace DMNS.DataLayer
                     projectId = projectID,
                     notes = notes,
                     decisions = decisions,
-                    createdAt = DateTime.Now
+                    createdAt = DateTime.Now,
+                    image = imagePath
                 };
 
                 db.meetingTable.Add(meeting);
+                db.SaveChanges();
+
+                return meeting;
+            }
+        }
+
+        public Meeting updateMeeting(int id, int projectID = -1, string meetingName = null, string notes = null, string decisions=null,string imagePath=null)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var meeting = db.meetingTable.Where(m => m.id == id).FirstOrDefault();
+
+                if (meeting == null)
+                    return null;
+
+                if (projectID != -1)
+                    meeting.projectId = projectID;
+
+                if (!meetingName.Equals(null))
+                    meeting.name = meetingName;
+
+                if (!notes.Equals(null))
+                    meeting.notes = notes;
+
+                if (!decisions.Equals(null))
+                    meeting.decisions = decisions;
+
+                if (!imagePath.Equals(null))
+                    meeting.image = imagePath;
+
                 db.SaveChanges();
 
                 return meeting;
@@ -102,6 +134,8 @@ namespace DMNS.DataLayer
                 return meetings;
             }
         }
+
+
         public List<Meeting> getProjectMeatings(int projectId)
         {
             using (var db = new PlanBeeDataContext())

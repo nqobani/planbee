@@ -11,6 +11,7 @@ namespace DMNS.Models
         public int id { get; set; }
         public int userId { get; set; }
         public string name { get; set; }
+        public string destription { get; set; }
         public DateTime createdAt { get; set; }
     }
 }

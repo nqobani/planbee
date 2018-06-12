@@ -14,20 +14,27 @@ namespace DMNS.Controllers
     {
         LogicBlaBlaBla logicBlaBlaBla = new LogicBlaBlaBla();
         [Route("api/add/project")]
-        public Project addProject(string projectName, int userID)
+        public Project addProject(string projectName, int userID, string description)
         {
-            return logicBlaBlaBla.addProject(projectName, userID);
+            return logicBlaBlaBla.addProject(projectName, userID, description);
         }
         [Route("api/add/meetings")]
-        public Meeting addMeeting(int projectID, string meetingName, string notes, string decisions)
+        public Meeting addMeeting(int projectID, string meetingName, string notes, string decisions, string imagePath = null)
         {
-            return logicBlaBlaBla.insertMeeting(projectID, meetingName, notes, decisions);
+            return logicBlaBlaBla.insertMeeting(projectID, meetingName, notes, decisions, imagePath);
         }
         [Route("api/register/user")]
         public User addUser(string username, string email, string password, string confirmPassword)
         {
             return logicBlaBlaBla.addUser(username, email, password, confirmPassword);
         }
+
+        [Route("api/update/meetings")]
+        public Meeting addMeeting(int id, int projectID = -1, string meetingName = null, string notes = null, string decisions = null)
+        {
+            return logicBlaBlaBla.updateMeeting(id, projectID, meetingName, notes, decisions);
+        }
+
         [Route("api/get/project")]
         public Project getProjects(int id)
         {

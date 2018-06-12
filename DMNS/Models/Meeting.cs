@@ -14,6 +14,7 @@ namespace DMNS.Models
         public int projectId { get; set; }
         public string name { get; set; }
         public string notes { get; set; }
+        public string image { get; set; }
         public DateTime createdAt { get; set; }
         public string decisions { get; set; }
     }
