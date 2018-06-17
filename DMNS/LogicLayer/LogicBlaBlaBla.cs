@@ -40,6 +40,23 @@ namespace DMNS.LogicLayer
             return planBeeDataSet.getUser(username, password);
         }
 
+        public User getUserByUsernameOrPassword(string usernameOrPassword)
+        {
+            return planBeeDataSet.getByUsernameOrEmail(usernameOrPassword);
+        }
+
+        public User resertPasswordUsername(string username, string password)
+        {
+            return planBeeDataSet.resertPasswordUsername(username, password);
+        }
+
+        public User resertPasswordEmail(string email, string password)
+        {
+            return planBeeDataSet.resertPasswordEmail(email, password);
+        }
+
+
+
         public Project getProject(int id)
         {
             return planBeeDataSet.getProject(id);

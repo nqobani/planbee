@@ -18,15 +18,42 @@ namespace DMNS.Controllers
         {
             return logicBlaBlaBla.addProject(projectName, userID, description);
         }
+
         [Route("api/add/meetings")]
         public Meeting addMeeting(int projectID, string meetingName, string notes, string decisions, string imagePath = null)
         {
             return logicBlaBlaBla.insertMeeting(projectID, meetingName, notes, decisions, imagePath);
         }
+
+    
         [Route("api/register/user")]
         public User addUser(string username, string email, string password, string confirmPassword)
         {
+            if (!password.Equals(confirmPassword))
+            {
+                return null;
+            }
+
             return logicBlaBlaBla.addUser(username, email, password, confirmPassword);
+        }
+
+        [Route("api/user/resertPassword")]
+        public User resertPassoword(string usernameOrEmail, string newPassword, string confirmPassword)
+        {
+            if (!newPassword.Equals(confirmPassword))
+            {
+                return null;
+            }
+
+            var user = logicBlaBlaBla.resertPasswordEmail(usernameOrEmail, newPassword);
+
+            if(user == null)
+                user = logicBlaBlaBla.resertPasswordUsername(usernameOrEmail, newPassword);
+
+            return user;
+
+
+
         }
 
         [Route("api/update/meetings")]
@@ -49,9 +76,16 @@ namespace DMNS.Controllers
         [Route("api/get/login")]
         public User getAllUsers(string username, string password)
         {
-            
+
             return logicBlaBlaBla.getUser(username, password);
         }
+
+        [Route("api/get/userByUsernameOrEmail")]
+        public User getUserByUsernameOrEmail(string usernameOrEmail)
+        {
+            return logicBlaBlaBla.getUserByUsernameOrPassword(usernameOrEmail);
+        }
+
 
         [Route("api/get/user/projects")]
         public List<Project> getUserProjects(int userId)

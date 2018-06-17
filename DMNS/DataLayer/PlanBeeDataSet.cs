@@ -99,9 +99,52 @@ namespace DMNS.DataLayer
         {
             using (var db = new PlanBeeDataContext())
             {
-                var users = db.userTable.Where(u => u.username.Equals(username)&& u.password.Equals(password)).FirstOrDefault();
+                var users = db.userTable.Where(u => u.username.Equals(username) && u.password.Equals(password)).FirstOrDefault();
 
                 return users;
+            }
+        }
+
+        public User getByUsernameOrEmail(string usernameOrEmail)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var users = db.userTable.Where(u => u.username.Equals(usernameOrEmail) || u.email.Equals(usernameOrEmail)).FirstOrDefault();
+
+                return users;
+            }
+        }
+
+
+
+        public User resertPasswordEmail(string email, string newPassword)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var user = db.userTable.Where(u => u.email.Equals(email)).FirstOrDefault();
+
+                if (user == null)
+                    return user;
+
+                user.password = newPassword;
+                db.SaveChanges();
+
+                return user;
+            }
+        }
+        public User resertPasswordUsername(string username, string newPassword)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var user = db.userTable.Where(u => u.username.Equals(username)).FirstOrDefault();
+
+                if (user == null)
+                    return user;
+
+                user.password = newPassword;
+                db.SaveChanges();
+
+                return user;
             }
         }
 
