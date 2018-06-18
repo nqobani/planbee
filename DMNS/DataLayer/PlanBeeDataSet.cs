@@ -77,16 +77,16 @@ namespace DMNS.DataLayer
                 if (projectID != -1)
                     meeting.projectId = projectID;
 
-                if (!meetingName.Equals(null))
+                if (meetingName!= null&& !meetingName.Equals(null))
                     meeting.name = meetingName;
 
-                if (!notes.Equals(null))
+                if (notes!=null && !notes.Equals(null))
                     meeting.notes = notes;
 
-                if (!decisions.Equals(null))
+                if (decisions!=null && !decisions.Equals(null))
                     meeting.decisions = decisions;
 
-                if (!imagePath.Equals(null))
+                if (imagePath!=null && !imagePath.Equals(null))
                     meeting.image = imagePath;
 
                 db.SaveChanges();
