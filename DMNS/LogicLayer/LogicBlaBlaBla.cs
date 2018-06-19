@@ -55,6 +55,26 @@ namespace DMNS.LogicLayer
             return planBeeDataSet.resertPasswordEmail(email, password);
         }
 
+        public SharedProjects ShareProject(int sharedBy, int sharedTo, int projectId)
+        {
+            return planBeeDataSet.ShareProject(sharedBy, sharedTo, projectId);
+        }
+
+        public SharedMeetings ShareMeetings(int sharedBy, int sharedTo, int meetingId)
+        {
+            return planBeeDataSet.ShareMeeting(sharedBy, sharedTo, meetingId);
+        }
+
+        public List<Meeting> getSharedMeetings(int userId)
+        {
+            return planBeeDataSet.getSharedMeetings(userId);
+        }
+
+        public List<Project> getSharedProjects(int userId)
+        {
+            return planBeeDataSet.getSharedProjects(userId);
+        }
+
 
 
         public Project getProject(int id)

@@ -99,6 +99,28 @@ namespace DMNS.Controllers
             return logicBlaBlaBla.getProjectMeetings(projectId);
         }
 
+        [Route("api/project/share")]
+        public SharedProjects shareProject(int sharedBy, int sharedTo, int projectId)
+        {
+            return logicBlaBlaBla.ShareProject(sharedBy, sharedTo, projectId);
+        }
+
+        [Route("api/meetings/share")]
+        public SharedMeetings shareMeetings(int sharedBy, int sharedTo, int meetingId)
+        {
+            return logicBlaBlaBla.ShareMeetings(sharedBy, sharedTo, meetingId);
+        }
+
+        [Route("api/get/sharedmeetings")]
+        public List<Meeting> getSharedMeetings(int userId)
+        {
+            return logicBlaBlaBla.getSharedMeetings(userId);
+        }
+        [Route("api/get/sharedprojects")]
+        public List<Project> getSharedProject(int userId)
+        {
+            return logicBlaBlaBla.getSharedProjects(userId);
+        }
 
 
         [Route("api/get/all/users")]

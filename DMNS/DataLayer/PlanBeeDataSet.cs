@@ -8,9 +8,10 @@ namespace DMNS.DataLayer
 {
     public class PlanBeeDataSet
     {
-        public User insertuser(string userName,string password,string email)
+        public User insertuser(string userName, string password, string email)
         {
-            using (var db = new PlanBeeDataContext()) {
+            using (var db = new PlanBeeDataContext())
+            {
                 var user = new User
                 {
                     username = userName,
@@ -24,8 +25,8 @@ namespace DMNS.DataLayer
                 return user;
             }
         }
-        
-        public Project insertProject(string projectName,int userID, string description)
+
+        public Project insertProject(string projectName, int userID, string description)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -43,8 +44,8 @@ namespace DMNS.DataLayer
                 return project;
             }
         }
-        
-        public Meeting insertMeeting(int projectID,string meetingName, string notes, string decisions, string imagePath)
+
+        public Meeting insertMeeting(int projectID, string meetingName, string notes, string decisions, string imagePath)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -65,7 +66,7 @@ namespace DMNS.DataLayer
             }
         }
 
-        public Meeting updateMeeting(int id, int projectID = -1, string meetingName = null, string notes = null, string decisions=null,string imagePath=null)
+        public Meeting updateMeeting(int id, int projectID = -1, string meetingName = null, string notes = null, string decisions = null, string imagePath = null)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -77,16 +78,16 @@ namespace DMNS.DataLayer
                 if (projectID != -1)
                     meeting.projectId = projectID;
 
-                if (meetingName!= null&& !meetingName.Equals(null))
+                if (meetingName != null && !meetingName.Equals(null))
                     meeting.name = meetingName;
 
-                if (notes!=null && !notes.Equals(null))
+                if (notes != null && !notes.Equals(null))
                     meeting.notes = notes;
 
-                if (decisions!=null && !decisions.Equals(null))
+                if (decisions != null && !decisions.Equals(null))
                     meeting.decisions = decisions;
 
-                if (imagePath!=null && !imagePath.Equals(null))
+                if (imagePath != null && !imagePath.Equals(null))
                     meeting.image = imagePath;
 
                 db.SaveChanges();
@@ -104,7 +105,131 @@ namespace DMNS.DataLayer
                 return users;
             }
         }
+        public User getUser(int id)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var users = db.userTable.Where(u => u.id == id).FirstOrDefault();
 
+                return users;
+            }
+        }
+
+        public List<Project> getSharedProjects(int userId)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var shareProjects = db.sharedProjectsTable.Where(x => x.sharedTo == userId);
+
+                if (shareProjects == null)
+                {
+                    return null;
+                }
+                List<Project> projectList = new List<Project>();
+                foreach (var item in shareProjects)
+                {
+                    using (var dbs = new PlanBeeDataContext())
+                    {
+                        var project = dbs.projectTable.Where(x => x.id == item.projectId).FirstOrDefault();
+
+                        if (project != null)
+                        {
+                            projectList.Add(project);
+                        }
+                    }
+                }
+
+                return projectList;
+            }
+        }
+
+        public List<Meeting> getSharedMeetings(int userId)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var shareMeetings = db.sharedMeetingsTable.Where(x => x.sharedTo == userId);
+
+                if (shareMeetings == null)
+                {
+                    return null;
+                }
+                List<Meeting> meetingList = new List<Meeting>();
+                foreach (var item in shareMeetings)
+                {
+                    using (var dbs = new PlanBeeDataContext())
+                    {
+                        var meeting = dbs.meetingTable.Where(x => x.id == item.meetingId).FirstOrDefault();
+
+                        if (meeting != null)
+                        {
+                            meetingList.Add(meeting);
+                        }
+                    }
+                }
+
+                return meetingList;
+            }
+        }
+
+        public SharedProjects ShareProject(int sharedBy, int sharedTo, int projectId)
+        {
+            Project project = getProject(projectId);
+            User user = getUser(sharedTo);
+            if (project == null || user == null)
+            {
+                return null;
+            }
+            using (var db = new PlanBeeDataContext())
+            {
+                var sharedProject = db.sharedProjectsTable.Where(x => x.sharedTo == sharedTo && x.projectId == projectId).FirstOrDefault();
+                if (sharedProject != null)
+                    return null;
+            }
+
+            using (var db = new PlanBeeDataContext())
+            {
+                var sharedProject = new SharedProjects
+                {
+                    sharedBy = sharedBy,
+                    sharedTo = sharedTo,
+                    projectId = projectId
+                };
+                db.sharedProjectsTable.Add(sharedProject);
+                db.SaveChanges();
+
+                return sharedProject;
+            }
+        }
+
+        public SharedMeetings ShareMeeting(int sharedBy, int sharedTo, int meetingId)
+        {
+            Meeting project = getMeeting(meetingId);
+            User user = getUser(sharedTo);
+            if (project == null || user == null)
+            {
+                return null;
+            }
+
+            using (var db = new PlanBeeDataContext())
+            {
+                var sharedMeeting = db.sharedMeetingsTable.Where(x => x.sharedTo == sharedTo && x.meetingId == meetingId).FirstOrDefault();
+                if (sharedMeeting != null)
+                    return null;
+            }
+            using (var db = new PlanBeeDataContext())
+            {
+                var sharedMeeting = new SharedMeetings
+                {
+                    sharedBy = sharedBy,
+                    sharedTo = sharedTo,
+                    meetingId = meetingId
+                };
+                db.sharedMeetingsTable.Add(sharedMeeting);
+                db.SaveChanges();
+
+                return sharedMeeting;
+            }
+        }
         public User getByUsernameOrEmail(string usernameOrEmail)
         {
             using (var db = new PlanBeeDataContext())
