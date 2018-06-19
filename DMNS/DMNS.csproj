@@ -208,10 +208,16 @@
     <Compile Include="Migrations\201806111804176_addnewcolumns.Designer.cs">
       <DependentUpon>201806111804176_addnewcolumns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806191642446_us.cs" />
+    <Compile Include="Migrations\201806191642446_us.Designer.cs">
+      <DependentUpon>201806191642446_us.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\PlanBeeDataContext.cs" />
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\SharedMeetings.cs" />
+    <Compile Include="Models\SharedProjects.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -289,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806111804176_addnewcolumns.resx">
       <DependentUpon>201806111804176_addnewcolumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806191642446_us.resx">
+      <DependentUpon>201806191642446_us.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

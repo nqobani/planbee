@@ -11,5 +11,8 @@ namespace DMNS.Models
         public DbSet<User> userTable { set; get; }
         public DbSet<Meeting> meetingTable { set; get; }
         public DbSet<Project> projectTable { set; get; }
+
+        public DbSet<SharedMeetings> sharedMeetingsTable { set; get; }
+        public DbSet<SharedProjects> sharedProjectsTable { set; get; }
     }
 }
