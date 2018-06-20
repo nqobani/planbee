@@ -20,7 +20,7 @@ namespace DMNS.Controllers
         }
 
         [Route("api/add/meetings")]
-        public Meeting addMeeting(int projectID, string meetingName, string notes, string decisions, string imagePath = null)
+        public Meeting addMeeting(int projectID, string meetingName, string notes, string decisions, byte[] imagePath = null)
         {
             return logicBlaBlaBla.insertMeeting(projectID, meetingName, notes, decisions, imagePath);
         }

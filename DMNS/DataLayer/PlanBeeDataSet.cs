@@ -45,7 +45,7 @@ namespace DMNS.DataLayer
             }
         }
 
-        public Meeting insertMeeting(int projectID, string meetingName, string notes, string decisions, string imagePath)
+        public Meeting insertMeeting(int projectID, string meetingName, string notes, string decisions, byte[] imagePath)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -56,7 +56,7 @@ namespace DMNS.DataLayer
                     notes = notes,
                     decisions = decisions,
                     createdAt = DateTime.Now,
-                    image = imagePath
+                    imagebyte = imagePath
                 };
 
                 db.meetingTable.Add(meeting);
@@ -66,7 +66,7 @@ namespace DMNS.DataLayer
             }
         }
 
-        public Meeting updateMeeting(int id, int projectID = -1, string meetingName = null, string notes = null, string decisions = null, string imagePath = null)
+        public Meeting updateMeeting(int id, int projectID = -1, string meetingName = null, string notes = null, string decisions = null, byte[] imagePath = null)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -87,8 +87,8 @@ namespace DMNS.DataLayer
                 if (decisions != null && !decisions.Equals(null))
                     meeting.decisions = decisions;
 
-                if (imagePath != null && !imagePath.Equals(null))
-                    meeting.image = imagePath;
+                if (imagePath != null)
+                    meeting.imagebyte = imagePath;
 
                 db.SaveChanges();
 
@@ -345,4 +345,16 @@ namespace DMNS.DataLayer
         }
 
     }
+
+    //public byte[] databaseFilePut(string varFilePath)
+    //{
+    //    byte[] file;
+    //    using (var stream = new FileStream(varFilePath, FileMode.Open, FileAccess.Read))
+    //    {
+    //        using (var reader = new BinaryReader(stream))
+    //        {
+    //            file = reader.ReadBytes((int)stream.Length);
+    //        }
+    //    }
+    //}
 }

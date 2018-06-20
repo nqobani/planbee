@@ -200,19 +200,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LogicLayer\LogicBlaBlaBla.cs" />
-    <Compile Include="Migrations\201806101120429_InitialCreate.cs" />
-    <Compile Include="Migrations\201806101120429_InitialCreate.Designer.cs">
-      <DependentUpon>201806101120429_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806111804176_addnewcolumns.cs" />
-    <Compile Include="Migrations\201806111804176_addnewcolumns.Designer.cs">
-      <DependentUpon>201806111804176_addnewcolumns.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806191642446_us.cs" />
-    <Compile Include="Migrations\201806191642446_us.Designer.cs">
-      <DependentUpon>201806191642446_us.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\PlanBeeDataContext.cs" />
     <Compile Include="Models\Project.cs" />
@@ -288,17 +275,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806101120429_InitialCreate.resx">
-      <DependentUpon>201806101120429_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806111804176_addnewcolumns.resx">
-      <DependentUpon>201806111804176_addnewcolumns.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806191642446_us.resx">
-      <DependentUpon>201806191642446_us.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
