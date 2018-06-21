@@ -76,6 +76,16 @@ namespace DMNS.LogicLayer
         }
 
 
+        public SharedProjects hasProject(int sharedTo, int projectId)
+        {
+            return planBeeDataSet.hasProject(sharedTo, projectId);
+        }
+
+        public SharedMeetings hasMeeting(int sharedTo, int meetingId)
+        {
+            return planBeeDataSet.hasMeeting(sharedTo, meetingId);
+        }
+
 
         public Project getProject(int id)
         {

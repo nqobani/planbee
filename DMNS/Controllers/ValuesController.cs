@@ -125,6 +125,17 @@ namespace DMNS.Controllers
             return logicBlaBlaBla.getSharedProjects(userId);
         }
 
+        [Route("api/get/hasProject")]
+        public SharedProjects hasProject(int sharedTo, int projectId)
+        {
+            return logicBlaBlaBla.hasProject(sharedTo, projectId);
+        }
+        [Route("api/get/hasMeeting")]
+        public SharedMeetings hasMeeting(int sharedTo, int meetingId)
+        {
+            return logicBlaBlaBla.hasMeeting(sharedTo, meetingId);
+        }
+
 
         [Route("api/get/all/users")]
         public List<User> getAllUsers()

@@ -201,6 +201,26 @@ namespace DMNS.DataLayer
             }
         }
 
+        public SharedProjects hasProject(int sharedTo, int projectId)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var sharedProject = db.sharedProjectsTable.Where(x => x.sharedTo == sharedTo && x.projectId == projectId).FirstOrDefault();
+
+                return sharedProject;
+            }
+        }
+
+        public SharedMeetings hasMeeting(int sharedTo, int meetingId)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var meetings = db.sharedMeetingsTable.Where(x => x.sharedTo == sharedTo && x.meetingId == meetingId).FirstOrDefault();
+
+                return meetings;
+            }
+        }
+
         public SharedMeetings ShareMeeting(int sharedBy, int sharedTo, int meetingId)
         {
             Meeting project = getMeeting(meetingId);
