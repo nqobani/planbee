@@ -142,5 +142,17 @@ namespace DMNS.Controllers
         {
             return logicBlaBlaBla.getAllMeetings();
         }
+
+        [Route("api/meeting/delete")]
+        public bool deleteMeeting(int meetingId)
+        {
+            return logicBlaBlaBla.deleteMeeting(meetingId);
+        }
+
+        [Route("api/project/delete")]
+        public bool deleteProject(int projectId)
+        {
+            return logicBlaBlaBla.deleteProject(projectId);
+        }
     }
 }

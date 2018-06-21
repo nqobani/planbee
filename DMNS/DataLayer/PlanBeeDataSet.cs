@@ -344,17 +344,56 @@ namespace DMNS.DataLayer
             }
         }
 
-    }
+        public bool deleleProject(int projectId)
+        {
+            bool delete = false;
+            using (var db = new PlanBeeDataContext())
+            {
+                var project = db.projectTable.Where(m => m.id == projectId).SingleOrDefault();
 
-    //public byte[] databaseFilePut(string varFilePath)
-    //{
-    //    byte[] file;
-    //    using (var stream = new FileStream(varFilePath, FileMode.Open, FileAccess.Read))
-    //    {
-    //        using (var reader = new BinaryReader(stream))
-    //        {
-    //            file = reader.ReadBytes((int)stream.Length);
-    //        }
-    //    }
-    //}
+                if (project != null) {
+                    db.projectTable.Remove(project);
+                    db.SaveChanges();
+                    delete = true;
+                }
+
+                using (var dbs = new PlanBeeDataContext())
+                {
+                    var meetings = dbs.meetingTable.Where(v => v.projectId == projectId);
+                    if(meetings != null) {
+                        dbs.meetingTable.RemoveRange(meetings);
+                        dbs.SaveChanges();
+                        delete = true;
+                    }
+                }
+
+                using (var dbs = new PlanBeeDataContext())
+                {
+                    var sharedprojects = dbs.sharedProjectsTable.Where(v => v.projectId == projectId);
+                    if (sharedprojects != null)
+                    {
+                        dbs.sharedProjectsTable.RemoveRange(sharedprojects);
+                        dbs.SaveChanges();
+                        delete = true;
+                    }
+                }
+                return delete;
+            }
+        }
+        public bool deleteMeeting(int meetingId)
+        {
+            bool delete = false;
+            using (var db = new PlanBeeDataContext())
+            {
+                var meetings = db.meetingTable.Where(v => v.id == meetingId);
+                if (meetings != null)
+                {
+                    db.meetingTable.RemoveRange(meetings);
+                    db.SaveChanges();
+                    delete = true;
+                }
+            }
+            return delete;
+        }
+    }
 }

@@ -110,5 +110,13 @@ namespace DMNS.LogicLayer
         {
             return planBeeDataSet.getAllMeetings();
         }
+        public bool deleteMeeting(int meetingId)
+        {
+            return planBeeDataSet.deleteMeeting(meetingId);
+        }
+        public bool deleteProject(int projectId)
+        {
+            return planBeeDataSet.deleleProject(projectId);
+        }
     }
 }
