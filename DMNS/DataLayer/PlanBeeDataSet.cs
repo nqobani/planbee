@@ -45,7 +45,7 @@ namespace DMNS.DataLayer
             }
         }
 
-        public Meeting insertMeeting(int projectID, string meetingName, string notes, string decisions, byte[] imagePath)
+        public Meeting insertMeeting(int projectID, string meetingName, string notes, string decisions, string imagePath)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -56,7 +56,7 @@ namespace DMNS.DataLayer
                     notes = notes,
                     decisions = decisions,
                     createdAt = DateTime.Now,
-                    imagebyte = imagePath
+                    imagePath = imagePath
                 };
 
                 db.meetingTable.Add(meeting);
@@ -66,7 +66,7 @@ namespace DMNS.DataLayer
             }
         }
 
-        public Meeting updateMeeting(int id, int projectID = -1, string meetingName = null, string notes = null, string decisions = null, byte[] imagePath = null)
+        public Meeting updateMeeting(int id, int projectID = -1, string meetingName = null, string notes = null, string decisions = null, string imagePath = null)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -88,7 +88,7 @@ namespace DMNS.DataLayer
                     meeting.decisions = decisions;
 
                 if (imagePath != null)
-                    meeting.imagebyte = imagePath;
+                    meeting.imagePath = imagePath;
 
                 db.SaveChanges();
 

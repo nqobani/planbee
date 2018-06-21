@@ -23,7 +23,7 @@ namespace DMNS.LogicLayer
             return planBeeDataSet.insertProject(projectName, userID, description);
         }
 
-        public Meeting insertMeeting(int projectID, string meetingName, string notes, string decisions, byte[] imagePath)
+        public Meeting insertMeeting(int projectID, string meetingName, string notes, string decisions, string imagePath)
         {
             //Do your validation ....
 
