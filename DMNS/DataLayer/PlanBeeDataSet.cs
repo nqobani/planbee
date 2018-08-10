@@ -8,7 +8,7 @@ namespace DMNS.DataLayer
 {
     public class PlanBeeDataSet
     {
-        public User insertuser(string userName, string password, string email)
+        public User insertuser(string userName, string password, string email, int confirmationNumber)
         {
             using (var db = new PlanBeeDataContext())
             {
@@ -22,7 +22,9 @@ namespace DMNS.DataLayer
                 {
                     username = userName,
                     password = password,
-                    email = email
+                    email = email,
+                    code = confirmationNumber,
+                    confirmed = false
                 };
 
                 db.userTable.Add(user);
@@ -293,6 +295,25 @@ namespace DMNS.DataLayer
                     return user;
 
                 user.password = newPassword;
+                db.SaveChanges();
+
+                return user;
+            }
+        }
+        public User confirmRegistration(int userId, int confirmationCode)
+        {
+            using (var db = new PlanBeeDataContext())
+            {
+                var user = db.userTable.Where(u => u.id==userId).FirstOrDefault();
+
+                if (user == null)
+                    return user;
+
+                if (user.code == confirmationCode)
+                    user.confirmed = true;
+                else
+                    user.confirmed = false;
+
                 db.SaveChanges();
 
                 return user;

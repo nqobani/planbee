@@ -10,7 +10,6 @@ namespace DMNS.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "DMNS.Models.PlanBeeDataContext";
         }
 
         protected override void Seed(DMNS.Models.PlanBeeDataContext context)

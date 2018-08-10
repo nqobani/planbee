@@ -30,15 +30,21 @@ namespace DMNS.Controllers
 
     
         [Route("api/register/user")]
-        public User addUser(string username, string email, string password, string confirmPassword)
+        public async System.Threading.Tasks.Task<User> addUserAsync(string username, string email, string password, string confirmPassword)
         {
             if (!password.Equals(confirmPassword))
             {
                 return null;
             }
 
-            return logicBlaBlaBla.addUser(username, email, password, confirmPassword);
+            return await logicBlaBlaBla.addUserAsync(username, email, password, confirmPassword);
         }
+        [Route("api/register/confirmation")]
+        public User confirmUserRegistration(int userId, int confirmationCode)
+        {
+            return logicBlaBlaBla.confirmUserRegistration(userId, confirmationCode);
+        }
+
 
         [Route("api/user/resertPassword")]
         public User resertPassoword(string usernameOrEmail, string newPassword, string confirmPassword)

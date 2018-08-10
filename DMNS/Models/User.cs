@@ -16,5 +16,7 @@ namespace DMNS.Models
         public string username { get; set; }
         public string password { get; set; }//this must be hashed
         public string email { get; set; }
+        public int code { get; set; }
+        public Boolean confirmed { get; set; }
     }
 }
