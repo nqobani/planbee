@@ -7,13 +7,13 @@ namespace DMNS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class init : IMigrationMetadata
+    public sealed partial class myd : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(myd));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808091121580_init"; }
+            get { return "201808101202366_myd"; }
         }
         
         string IMigrationMetadata.Source
