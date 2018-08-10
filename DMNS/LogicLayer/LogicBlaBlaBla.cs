@@ -23,7 +23,7 @@ namespace DMNS.LogicLayer
 
             var user =  planBeeDataSet.insertuser(username, password, email, num);
             
-            await SendEmail(user.email, num);
+            await SendEmail(user.username,user.email, num);
 
             return user;
         }
@@ -144,7 +144,7 @@ namespace DMNS.LogicLayer
         }
 
 
-        private async Task SendEmail(String userEmail, int confirmationCode)
+        private async Task SendEmail(string username, string  userEmail, int confirmationCode)
         {
             String one = "SG.";
             String two = "662z_jwpSMS65mzmG0XkRQ.";
@@ -154,7 +154,7 @@ namespace DMNS.LogicLayer
             var client = new SendGridClient(one + two + three + four);
             var from = new EmailAddress("slimncwango12@gmail.com", "PlanBee");
             var subject = "PlanBee registration";
-            var to = new EmailAddress(userEmail, "Example User");
+            var to = new EmailAddress(userEmail, username);
             var plainTextContent = $"PlanBee registration confirmation code: {confirmationCode}";
             var htmlContent = $"<strong>PlanBee registration confirmation code: {confirmationCode}</strong>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
