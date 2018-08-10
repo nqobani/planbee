@@ -203,9 +203,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LogicLayer\LogicBlaBlaBla.cs" />
-    <Compile Include="Migrations\201808091121580_init.cs" />
-    <Compile Include="Migrations\201808091121580_init.Designer.cs">
-      <DependentUpon>201808091121580_init.cs</DependentUpon>
+    <Compile Include="Migrations\201808101202366_myd.cs" />
+    <Compile Include="Migrations\201808101202366_myd.Designer.cs">
+      <DependentUpon>201808101202366_myd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Imagesss.cs" />
@@ -286,8 +286,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808091121580_init.resx">
-      <DependentUpon>201808091121580_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808101202366_myd.resx">
+      <DependentUpon>201808101202366_myd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
