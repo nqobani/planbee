@@ -12,7 +12,7 @@ namespace DMNS.DataLayer
         {
             using (var db = new PlanBeeDataContext())
             {
-                var user = db.userTable.Where(x => x.username.ToLower().Equals(userName.ToLower())).FirstOrDefault();
+                var user = db.userTable.Where(x => x.username.ToLower().Equals(userName.ToLower())|| x.email.ToLower().Equals(email.ToLower())).FirstOrDefault();
                 if (user != null)
                     return null;
             }

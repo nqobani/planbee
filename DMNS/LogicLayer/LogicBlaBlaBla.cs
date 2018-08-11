@@ -22,7 +22,9 @@ namespace DMNS.LogicLayer
             int num = randomNumberGenrator.Next(999999) + 1100000;
 
             var user =  planBeeDataSet.insertuser(username, password, email, num);
-            
+            if (user == null)
+                return null;
+
             await SendEmail(user.username,user.email, num);
 
             return user;
