@@ -108,7 +108,7 @@ namespace DMNS.DataLayer
         {
             using (var db = new PlanBeeDataContext())
             {
-                var users = db.userTable.Where(u => u.username.Equals(username) && u.password.Equals(password)).FirstOrDefault();
+                var users = db.userTable.Where(u => (u.username.Equals(username)|| u.email.Equals(username)) && u.password.Equals(password)).FirstOrDefault();
 
                 return users;
             }
