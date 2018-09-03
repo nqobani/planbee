@@ -203,11 +203,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LogicLayer\LogicBlaBlaBla.cs" />
-    <Compile Include="Migrations\201808101202366_myd.cs" />
-    <Compile Include="Migrations\201808101202366_myd.Designer.cs">
-      <DependentUpon>201808101202366_myd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Imagesss.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\PlanBeeDataContext.cs" />
@@ -284,11 +279,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808101202366_myd.resx">
-      <DependentUpon>201808101202366_myd.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
